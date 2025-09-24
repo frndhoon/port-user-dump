@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
+import SideMenu from '@/components/SideMenu';
+import { Toaster } from '@/components/ui/sonner';
 import TanstackQueryProvider from '@/provider/TanstackQueryProvider';
 import '../styles/globals.css';
 
@@ -24,7 +26,11 @@ const RootLayout = ({
 	return (
 		<html lang="en">
 			<body className={`${pretendard.variable} antialiased`}>
-				<TanstackQueryProvider>{children}</TanstackQueryProvider>
+				<TanstackQueryProvider>
+					<SideMenu />
+					{children}
+					<Toaster position="top-right" duration={2000} />
+				</TanstackQueryProvider>
 			</body>
 		</html>
 	);
