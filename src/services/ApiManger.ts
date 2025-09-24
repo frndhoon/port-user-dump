@@ -67,12 +67,7 @@ class ApiManager {
 			const response = await fetch(fullUrl, requestConfig);
 			const responseData = await response.json();
 
-			return {
-				statusCode: response.status,
-				result: responseData,
-				resultMessage: response.statusText,
-				message: response.statusText,
-			};
+			return responseData;
 		} catch (error) {
 			throw new Error(`API 요청 실패: ${error}`);
 		}
