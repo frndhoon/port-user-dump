@@ -78,6 +78,13 @@
 	--sidebar-ring: oklch(0.704 0.04 256.788);
 }
 
+/* 커스텀 기본 컬러 */
+:root {
+	--foreground: 0 0% 18.4%;
+	--primary: #33388a;
+	--secondary: #f08300;
+}
+
 .dark {
 	--background: oklch(0.129 0.042 264.695);
 	--foreground: oklch(0.9 0 0);
@@ -116,6 +123,7 @@
 	* {
 		@apply border-border outline-ring/50;
 		font-family: var(--font-pretendard), ui-sans-serif, system-ui, sans-serif;
+		letter-spacing: -0.02em;
 	}
 	body {
 		@apply bg-background text-foreground;
@@ -137,6 +145,12 @@
 	[type='reset']:disabled {
 		cursor: not-allowed;
 	}
+}
+
+@theme {
+	--color-placeholder: #68778a;
+	--color-disabled: #9b9b9b;
+	--color-stroke: #dedede;
 }
 
 html {
