@@ -148,8 +148,9 @@
 }
 
 @theme {
-	--color-placeholder: #798697;
+	--color-placeholder: #68778a;
 	--color-disabled: #9b9b9b;
+	--color-stroke: #dedede;
 }
 
 html {
