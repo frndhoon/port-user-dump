@@ -20,18 +20,16 @@ const useGetAddressBooks = (queryString: addressBookTypes.GetAddressBookQueryStr
 };
 
 // * 주소록 등록
-const useCreateAddressBook = (
-	request: addressBookTypes.CreateAddressBookRequest,
-): UseMutationResult<addressBookTypes.CreateAddressBookResponse | undefined> => {
+const useCreateAddressBook = (request: addressBookTypes.CreateAddressBookRequest): UseMutationResult<addressBookTypes.CreateAddressBookResponse | null> => {
 	const queryClient = useQueryClient();
 
 	return useMutation({
 		mutationFn: async () => {
-			const isDuplicateGroupTitle = (await checkDuplicateGroupTitle({ title: request.name })).result?.duplicateYn;
+			const checkDuplicateGroupTitleResponse = await checkDuplicateGroupTitle<addressBookTypes.CheckDuplicateGroupTitleResponse>({ title: request.name });
+			const duplicateYn = checkDuplicateGroupTitleResponse.result?.duplicateYn;
 
-			if (isDuplicateGroupTitle) {
-				toast.error('중복된 그룹명입니다.');
-				return;
+			if (duplicateYn) {
+				throw new Error('중복된 그룹명입니다.');
 			}
 
 			// (backend request type) contact 속성 중 accountId, chainportalId만 남기고 나머지 속성 제거
@@ -44,17 +42,23 @@ const useCreateAddressBook = (
 				})),
 			};
 
-			const response = await createAddressBook(apiRequest);
-
-			queryClient.invalidateQueries({ queryKey: ['addressBook'] });
-
+			const response = await createAddressBook<addressBookTypes.CreateAddressBookResponse>(apiRequest);
 			if (response.statusCode === 200) {
-				toast.success('주소록이 성공적으로 생성되었습니다.');
-				return response.result || undefined;
+				return response.result;
+			} else {
+				throw new Error('주소록 생성에 실패했습니다. 다시 시도해주세요.');
 			}
-
+		},
+		onSuccess: () => {
+				toast.success('주소록이 성공적으로 생성되었습니다.');
+			queryClient.invalidateQueries({ queryKey: ['addressBook'] });
+		},
+		onError: error => {
+			if (error.message === '중복된 그룹명입니다.') {
+				toast.error('중복된 그룹명입니다.');
+			} else {
 			toast.error('주소록 생성에 실패했습니다. 다시 시도해주세요.');
-			throw new Error(response.message);
+			}
 		},
 	});
 };
@@ -80,54 +84,65 @@ const useUpdateAddressBook = (
 	id: number,
 	currentName: string,
 	request: addressBookTypes.UpdateAddressBookRequest,
-): UseMutationResult<addressBookTypes.UpdateAddressBookResponse | undefined> => {
+): UseMutationResult<addressBookTypes.UpdateAddressBookResponse | null> => {
 	const queryClient = useQueryClient();
 
 	return useMutation({
 		mutationKey: ['updateAddressBook', request.name],
 		mutationFn: async () => {
 			if (request.name !== currentName) {
-				const isDuplicateGroupTitle = (await checkDuplicateGroupTitle({ title: request.name })).result?.duplicateYn;
+				const checkDuplicateGroupTitleResponse = await checkDuplicateGroupTitle<addressBookTypes.CheckDuplicateGroupTitleResponse>({
+					title: request.name,
+				});
+				const duplicateYn = checkDuplicateGroupTitleResponse.result?.duplicateYn;
 
-				if (isDuplicateGroupTitle) {
-					return;
+				if (duplicateYn) {
+					throw new Error('중복된 그룹명입니다.');
 				}
 			}
 
-			const response = await updateAddressBook(id, request);
-
-			queryClient.invalidateQueries({ queryKey: ['addressBook'] });
-
+			const response = await updateAddressBook<addressBookTypes.UpdateAddressBookResponse>(id, request);
 			if (response.statusCode === 200) {
-				toast.success('주소록이 성공적으로 업데이트되었습니다.');
-				return response.result || undefined;
+				return response.result;
+			} else {
+				throw new Error('주소록 업데이트에 실패했습니다. 다시 시도해주세요.');
 			}
-
+		},
+		onSuccess: () => {
+				toast.success('주소록이 성공적으로 업데이트되었습니다.');
+			queryClient.invalidateQueries({ queryKey: ['addressBook'] });
+		},
+		onError: error => {
+			if (error.message === '중복된 그룹명입니다.') {
+				toast.error(error.message);
+			} else {
 			toast.error('주소록 업데이트에 실패했습니다. 다시 시도해주세요.');
-			throw new Error(response.message);
+			}
 		},
 	});
 };
 
 // * 주소록 삭제
-const useDeleteAddressBook = (id: number): UseMutationResult<addressBookTypes.DeleteAddressBookResponse | undefined> => {
+const useDeleteAddressBook = (id: number): UseMutationResult<addressBookTypes.DeleteAddressBookResponse | null> => {
 	const queryClient = useQueryClient();
 
 	return useMutation({
 		mutationKey: ['deleteAddressBook', id],
 		mutationFn: async () => {
-			const response = await deleteAddressBook({ id });
+			const response = await deleteAddressBook<addressBookTypes.DeleteAddressBookResponse>({ id });
 
 			if (response.statusCode === 200) {
 				toast.success('주소록이 성공적으로 삭제되었습니다.');
-				return response.result || undefined;
+				return response.result;
+			} else {
+				throw new Error('주소록 삭제에 실패했습니다. 다시 시도해주세요.');
 			}
-
-			toast.error('주소록 삭제에 실패했습니다. 다시 시도해주세요.');
-			throw new Error(response.message);
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['addressBook'] });
+		},
+		onError: error => {
+			toast.error(error.message);
 		},
 	});
 };
