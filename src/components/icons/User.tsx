@@ -1,4 +1,4 @@
-export const User = ({ className }: { className?: string }) => (
+const User = ({ className }: { className?: string }) => (
 	<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
 		<circle cx="12.9985" cy="5.62109" r="4.20947" stroke="currentColor" strokeWidth="2" />
 		<path
@@ -8,3 +8,5 @@ export const User = ({ className }: { className?: string }) => (
 		/>
 	</svg>
 );
+
+export default User;

@@ -1,14 +1,12 @@
-import { ArrowDown } from './ArrowDown';
-import { BpaLogo } from './BpaLogo';
-import { ChevronLeft } from './ChevronLeft';
-import { ChevronRight } from './ChevronRight';
-import { ChevronsLeft } from './ChevronsLeft';
-import { ChevronsRight } from './ChevronsRight';
-import { Close } from './Close';
-import { Container } from './Container';
-import { Schedule } from './Schedule';
-import { ShipMonitoring } from './ShipMonitoring';
-import { Statistics } from './Statistics';
-import { User } from './User';
-
-export { ArrowDown, BpaLogo, Close, Container, Schedule, ShipMonitoring, Statistics, User, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight };
+export { default as ArrowDown } from './ArrowDown';
+export { default as BpaLogo } from './BpaLogo';
+export { default as ChevronLeft } from './ChevronLeft';
+export { default as ChevronRight } from './ChevronRight';
+export { default as ChevronsLeft } from './ChevronsLeft';
+export { default as ChevronsRight } from './ChevronsRight';
+export { default as Close } from './Close';
+export { default as Container } from './Container';
+export { default as Schedule } from './Schedule';
+export { default as ShipMonitoring } from './ShipMonitoring';
+export { default as Statistics } from './Statistics';
+export { default as User } from './User';
