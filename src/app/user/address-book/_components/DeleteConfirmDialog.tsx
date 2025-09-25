@@ -16,8 +16,12 @@ const DeleteConfirmDialog = ({ id }: { id: number }) => {
 	const { mutateAsync: deleteAddressBook, isPending: isDeleting } = useDeleteAddressBook(id);
 
 	const handleDelete = async () => {
-		await deleteAddressBook({});
-		handleDialogChange(false);
+		try {
+			await deleteAddressBook({});
+			// eslint-disable-next-line unused-imports/no-unused-vars
+		} catch (error) {
+			// 훅에서 error toast 처리
+		}
 	};
 
 	const handleOpenChange = (open: boolean) => {
@@ -43,6 +47,7 @@ const DeleteConfirmDialog = ({ id }: { id: number }) => {
 						variant="outline"
 						className="h-[4.1rem] w-[9rem] rounded-[1rem] px-[1.5rem] py-[1rem] text-[1.7rem] font-bold"
 						onClick={() => handleDialogChange(false)}
+						disabled={isDeleting}
 					>
 						취소
 					</Button>

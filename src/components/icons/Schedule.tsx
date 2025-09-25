@@ -1,4 +1,4 @@
-export const Schedule = ({ className }: { className?: string }) => (
+const Schedule = ({ className }: { className?: string }) => (
 	<svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
 		<line x1="1.06055" y1="9.49719" x2="23.0333" y2="9.49719" stroke="currentColor" strokeWidth="2" />
 		<line x1="5.68555" y1="15.1222" x2="7.77087" y2="15.1222" stroke="currentColor" strokeWidth="2" />
@@ -12,3 +12,5 @@ export const Schedule = ({ className }: { className?: string }) => (
 		<rect x="1.34961" y="3.23157" width="21.2997" height="21.2997" stroke="currentColor" strokeWidth="2" />
 	</svg>
 );
+
+export default Schedule;
