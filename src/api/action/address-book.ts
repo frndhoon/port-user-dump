@@ -1,22 +1,15 @@
-import ApiManager, { ApiManagerSingleton } from '@/services/ApiManger';
+import { ApiManagerSingleton } from '@/services/ApiManger';
 import * as addressBookTypes from '@/types/address-book-types';
 import * as commonTypes from '@/types/common-types';
 
 // * 일반 요청
 const $httpFactory = ApiManagerSingleton.getInstance({
-	baseURL: process.env.NEXT_PUBLIC_SERVER_URL + 'setting/',
+	baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
 	timeout: 10000,
 	headers: {
 		Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_TOKEN,
 	},
 });
-
-// * 중복 및 유저 확인 요청 (서버 url 따로)
-const $httpFactoryForCheck = new ApiManager(process.env.NEXT_PUBLIC_CHECK_URL);
-$httpFactoryForCheck.timeout = 10000;
-$httpFactoryForCheck.headers = {
-	Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_TOKEN,
-};
 
 // * 주소록 조회
 export const getAddressBook = async <T = addressBookTypes.GetAddressBookResponse>(
@@ -24,7 +17,7 @@ export const getAddressBook = async <T = addressBookTypes.GetAddressBookResponse
 ): Promise<commonTypes.responseApi<T>> => {
 	try {
 		const response: commonTypes.responseApi<T> = await $httpFactory.getRequest({
-			url: 'contact/group',
+			url: 'setting/contact/group',
 			data: {
 				page: queryString.page,
 			},
@@ -45,8 +38,8 @@ export const checkDuplicateGroupTitle = async <T = addressBookTypes.CheckDuplica
 	queryString: addressBookTypes.CheckDuplicateGroupTitleQueryString,
 ): Promise<commonTypes.responseApi<T>> => {
 	try {
-		const response: commonTypes.responseApi<T> = await $httpFactoryForCheck.getRequest({
-			url: 'contact/group/check',
+		const response: commonTypes.responseApi<T> = await $httpFactory.getRequest({
+			url: 'setting/contact/group/check',
 			data: queryString,
 		});
 		return response;
@@ -66,7 +59,7 @@ export const createAddressBook = async <T = addressBookTypes.CreateAddressBookRe
 ): Promise<commonTypes.responseApi<T>> => {
 	try {
 		const response: commonTypes.responseApi<T> = await $httpFactory.postRequest({
-			url: 'contact/group',
+			url: 'setting/contact/group',
 			data: request,
 		});
 		return response;
@@ -85,8 +78,8 @@ export const searchUser = async <T = addressBookTypes.SearchUserResponse>(
 	queryString: addressBookTypes.SearchUserQueryString,
 ): Promise<commonTypes.responseApi<T>> => {
 	try {
-		const response: commonTypes.responseApi<T> = await $httpFactoryForCheck.getRequest({
-			url: 'contact',
+		const response: commonTypes.responseApi<T> = await $httpFactory.getRequest({
+			url: 'setting/contact',
 			data: queryString,
 		});
 		return response;
@@ -107,7 +100,7 @@ export const updateAddressBook = async <T = addressBookTypes.UpdateAddressBookRe
 ): Promise<commonTypes.responseApi<T>> => {
 	try {
 		const response: commonTypes.responseApi<T> = await $httpFactory.postRequest({
-			url: `contact/group/${id}`,
+			url: `setting/contact/group/${id}`,
 			data: request,
 		});
 		return response;
@@ -127,7 +120,7 @@ export const deleteAddressBook = async <T = addressBookTypes.DeleteAddressBookRe
 ): Promise<commonTypes.responseApi<T>> => {
 	try {
 		const response: commonTypes.responseApi<T> = await $httpFactory.postRequest({
-			url: `contact/group/delete/${request.id}`,
+			url: `setting/contact/group/delete/${request.id}`,
 		});
 		return response;
 	} catch (error: unknown) {
