@@ -16,15 +16,13 @@ import { cn } from '@/lib/utils';
  */
 
 interface AddressBookTablePaginationProps {
-	previousPage: number;
 	nowPage: number;
-	nextPage: number | null;
 	pageSize: number;
 	totalRows: number;
 	onPageChange: (zeroIndexPage: number) => void;
 }
 
-const AddressBookTablePagination = ({ previousPage, nowPage, nextPage, pageSize, totalRows, onPageChange }: AddressBookTablePaginationProps) => {
+const AddressBookTablePagination = ({ nowPage, pageSize, totalRows, onPageChange }: AddressBookTablePaginationProps) => {
 	const totalPage = Math.ceil(totalRows / pageSize);
 
 	// 0 index
@@ -55,7 +53,7 @@ const AddressBookTablePagination = ({ previousPage, nowPage, nextPage, pageSize,
 							disabled={nowPage <= 0}
 							variant="outline"
 							className="rounded-l-none rounded-r-[0.5rem]"
-							onClick={() => onPageChange(previousPage)}
+							onClick={() => onPageChange(nowPage - 1)}
 						>
 							<ChevronLeft />
 						</Button>
@@ -84,7 +82,7 @@ const AddressBookTablePagination = ({ previousPage, nowPage, nextPage, pageSize,
 							disabled={nowPage >= totalPage - 1}
 							variant="outline"
 							className="rounded-l-[0.5rem] rounded-r-none border-r-0"
-							onClick={() => nextPage && onPageChange(nextPage)}
+							onClick={() => onPageChange(nowPage + 1)}
 						>
 							<ChevronRight />
 						</Button>
