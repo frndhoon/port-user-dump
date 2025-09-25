@@ -1,0 +1,45 @@
+/* Sonner 토스트 스타일 */
+
+[data-sonner-toaster][data-sonner-theme='dark'] [data-sonner-toast] [data-close-button] {
+	background: none !important;
+	border: none !important;
+	position: static !important;
+}
+
+[data-sonner-toast] {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}
+
+[data-sonner-toast] [data-close-button] {
+	order: 3;
+	margin-top: 1.2rem;
+}
+
+[data-sonner-toast] [data-icon] {
+	order: 1;
+}
+
+[data-sonner-toast] [data-content] {
+	order: 2;
+	flex: 1;
+}
+
+[data-sonner-toast] {
+	transition: transform 0.27s ease-out !important;
+
+	opacity: 1 !important;
+
+	transform: translateX(50%) !important;
+}
+
+[data-sonner-toast][data-mounted='true'] {
+	transform: translateX(0) !important;
+	opacity: 1 !important;
+}
+
+[data-sonner-toast][data-removed='true'][data-front='true'] {
+	transform: translateX(100%) !important;
+	opacity: 1 !important;
+}
