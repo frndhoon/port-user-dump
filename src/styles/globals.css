@@ -148,11 +148,16 @@
 }
 
 @theme {
-	--color-placeholder: #68778a; // input placeholder
-	--color-disabled: #9b9b9b; // button disabled
-	--color-stroke: #dedede; // border
-	--color-correct: #ff8c8c; // 개인화 설정 페이지(기타 설정 탭)에 선사 및 항로명 검색 시 searchInput과 동일한 단어에 글자색 적용
-	--color-sub: #ebeefb; // 부제 색상
+	/* input placeholder */
+	--color-placeholder: #68778a;
+	/* button disabled */
+	--color-disabled: #9b9b9b;
+	/* border */
+	--color-stroke: #dedede;
+	/* 개인화 설정 페이지(기타 설정 탭)에 선사 및 항로명 검색 시 searchInput과 동일한 단어에 글자색 적용 */
+	--color-correct: #ff8c8c;
+	/* 부제 색상 */
+	--color-sub: #ebeefb;
 }
 
 @layer utilities {
