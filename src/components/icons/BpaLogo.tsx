@@ -1,4 +1,4 @@
-export const BpaLogo = ({ className }: { className?: string }) => (
+const BpaLogo = ({ className }: { className?: string }) => (
 	<svg width="63.95" height="14.6" viewBox="0 0 64 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
 		<path
 			d="M46.9106 1.36462H41.1906L33.1523 15.0661H36.7593L38.5849 11.9487H47.6876L49.5701 15.0661H55.1637L46.9106 1.36462ZM40.2052 9.19131L43.092 4.26726L46.0547 9.19131H40.2052Z"
@@ -15,3 +15,5 @@ export const BpaLogo = ({ className }: { className?: string }) => (
 		<path d="M51.8086 1.36157H63.9782L57.9771 11.595L51.8086 1.36157Z" fill="#F08300" />
 	</svg>
 );
+
+export default BpaLogo;

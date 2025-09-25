@@ -15,9 +15,9 @@ const TopMenu = () => {
 	return (
 		<div className="border-stroke flex h-[6rem] w-full flex-row items-end gap-[3rem] border-b px-[2rem]">
 			<TopMenuItem title="주소록" href="/user/address-book" />
-			<TopMenuItem title="이상탐지 설정" href="operation-incident-setting" disabled />
-			<TopMenuItem title="기타 설정" href="etc-setting" disabled />
-			<TopMenuItem title="엑셀 양식 관리" href="excel-form-management" disabled />
+			<TopMenuItem title="이상탐지 설정" href="#" />
+			<TopMenuItem title="기타 설정" href="#" />
+			<TopMenuItem title="엑셀 양식 관리" href="#" />
 		</div>
 	);
 };
@@ -38,17 +38,17 @@ interface TopMenuItemProps {
 	disabled?: boolean;
 }
 
-const TopMenuItem = ({ title, href, disabled }: TopMenuItemProps) => {
+const TopMenuItem = ({ title, href }: TopMenuItemProps) => {
 	const pathname = usePathname();
-
-	if (disabled) {
-		return <div className="flex h-[2.9rem] cursor-not-allowed items-start text-[1.7rem]">{title}</div>;
-	}
 
 	return (
 		<Link
 			href={href}
-			className={cn('flex h-[2.9rem] items-start text-[1.7rem]', pathname === href && 'text-primary border-b-primary border-b-[3px] font-semibold')}
+			className={cn(
+				'flex h-[2.9rem] items-start text-[1.7rem]',
+				pathname === href && 'text-primary border-b-primary border-b-[3px] font-semibold',
+				href === '#' && 'cursor-not-allowed',
+			)}
 		>
 			{title}
 		</Link>

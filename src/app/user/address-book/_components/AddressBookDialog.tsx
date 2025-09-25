@@ -12,7 +12,7 @@ import { Dialog, DialogTitle, DialogContent, DialogHeader, DialogTrigger, Dialog
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { TableCell, TableRow } from '@/components/ui/table';
-import { ContactGroup } from '@/types/address-book-types';
+import * as addressBookTypes from '@/types/address-book-types';
 
 /**
  * @component 주소록 다이얼로그 컴포넌트
@@ -24,7 +24,7 @@ import { ContactGroup } from '@/types/address-book-types';
 
 interface AddressBookDialogProps {
 	mode: 'add' | 'edit';
-	contactGroup?: ContactGroup;
+	contactGroup?: addressBookTypes.ContactGroup;
 }
 
 const AddressBookDialog = ({ mode, contactGroup }: AddressBookDialogProps) => {
@@ -53,7 +53,7 @@ const AddressBookDialog = ({ mode, contactGroup }: AddressBookDialogProps) => {
 					<TableRow className="[&>*]:border-stroke h-[4.8rem] text-[1.4rem] hover:bg-[#EBEEFB] [&>*]:border-r [&>*]:border-b [&>*]:px-[1.5rem] [&>*:last-child]:border-r-0">
 						<TableCell>{contactGroup?.name}</TableCell>
 						<TableCell>{contactGroup?.contactCount}</TableCell>
-						<TableCell className="w-[6.3rem] text-center">
+						<TableCell className="text-center">
 							<div onClick={e => e.stopPropagation()}>
 								<DeleteConfirmDialog id={contactGroup?.id || 0} />
 							</div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchUser } from '@/api/tanstack-query/useAddressBook';
-import { Contact } from '@/types/address-book-types';
+import * as addressBookTypes from '@/types/address-book-types';
 
 /**
  * @component 연락처 관리 훅
@@ -19,8 +19,8 @@ interface UseContactManagementProps {
 	email: string;
 	setEmail: (email: string) => void;
 	setEmailWarningMessage: (emailWarningMessage: string) => void;
-	contacts: Contact[];
-	setContacts: (contacts: Contact[]) => void;
+	contacts: addressBookTypes.Contact[];
+	setContacts: (contacts: addressBookTypes.Contact[]) => void;
 }
 
 const useContactManagement = ({ email, setEmail, setEmailWarningMessage, contacts, setContacts }: UseContactManagementProps) => {
