@@ -22,13 +22,13 @@ const AddressBookTable = ({
 	isAddressBookError: boolean;
 }) => {
 	return (
-		<Table>
+		<Table className="table-fixed">
 			<TableHeader className="border-stroke h-[4.8rem] border-y bg-[#EDEDED] font-bold [&>*]:hover:bg-transparent">
 				<TableRow className="[&>*]:border-stroke text-[1.4rem] [&>*]:border-r [&>*]:px-[1.5rem] [&>*]:font-bold [&>*:last-child]:border-r-0">
-					<TableHead className="w-[45%]">그룹명</TableHead>
-					<TableHead className="w-[45%]">직원수</TableHead>
+					<TableHead className="max-w-[84.2rem]">그룹명</TableHead>
+					<TableHead className="max-w-[84.2rem]">직원수</TableHead>
 					{/* 삭제 버튼 열 */}
-					<TableHead className="w-[10%]">&nbsp;</TableHead>
+					<TableHead className="w-[6.3rem] max-w-[6.3rem] flex-shrink-0">&nbsp;</TableHead>
 				</TableRow>
 			</TableHeader>
 			<TableBody>

@@ -53,7 +53,7 @@ const AddressBookDialog = ({ mode, contactGroup }: AddressBookDialogProps) => {
 					<TableRow className="[&>*]:border-stroke h-[4.8rem] text-[1.4rem] hover:bg-[#EBEEFB] [&>*]:border-r [&>*]:border-b [&>*]:px-[1.5rem] [&>*:last-child]:border-r-0">
 						<TableCell>{contactGroup?.name}</TableCell>
 						<TableCell>{contactGroup?.contactCount}</TableCell>
-						<TableCell className="w-[6.3rem] text-center">
+						<TableCell className="text-center">
 							<div onClick={e => e.stopPropagation()}>
 								<DeleteConfirmDialog id={contactGroup?.id || 0} />
 							</div>
