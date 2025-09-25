@@ -6,13 +6,13 @@ import * as addressBookTypes from '@/types/address-book-types';
 import { createAddressBook, getAddressBook, checkDuplicateGroupTitle, searchUser, updateAddressBook, deleteAddressBook } from '../action/address-book';
 
 // * 주소록 목록 조회
-const useGetAddressBooks = (queryString: addressBookTypes.GetAddressBookQueryString): UseQueryResult<addressBookTypes.GetAddressBookResponse | undefined> => {
+const useGetAddressBooks = (queryString: addressBookTypes.GetAddressBookQueryString): UseQueryResult<addressBookTypes.GetAddressBookResponse | null> => {
 	return useQuery({
 		queryKey: ['addressBook', queryString.page],
 		queryFn: async () => {
-			const response = await getAddressBook(queryString);
+			const response = await getAddressBook<addressBookTypes.GetAddressBookResponse>(queryString);
 			if (response.statusCode === 200) {
-				return response.result || undefined;
+				return response.result;
 			}
 			throw new Error(response.message);
 		},
@@ -50,14 +50,14 @@ const useCreateAddressBook = (request: addressBookTypes.CreateAddressBookRequest
 			}
 		},
 		onSuccess: () => {
-				toast.success('주소록이 성공적으로 생성되었습니다.');
+			toast.success('주소록이 성공적으로 생성되었습니다.');
 			queryClient.invalidateQueries({ queryKey: ['addressBook'] });
 		},
 		onError: error => {
 			if (error.message === '중복된 그룹명입니다.') {
 				toast.error('중복된 그룹명입니다.');
 			} else {
-			toast.error('주소록 생성에 실패했습니다. 다시 시도해주세요.');
+				toast.error('주소록 생성에 실패했습니다. 다시 시도해주세요.');
 			}
 		},
 	});
@@ -68,13 +68,13 @@ const useSearchUser = (queryString: addressBookTypes.SearchUserQueryString): Use
 	return useMutation({
 		mutationKey: ['searchUser', queryString.email],
 		mutationFn: async () => {
-			const response = await searchUser(queryString);
+			const response = await searchUser<addressBookTypes.SearchUserResponse>(queryString);
 			if (response.statusCode === 200) {
 				return response.result || undefined;
 			}
-
+		},
+		onError: () => {
 			toast.error('사용자 검색에 실패했습니다. 다시 시도해주세요.');
-			throw new Error(response.message);
 		},
 	});
 };
@@ -109,14 +109,14 @@ const useUpdateAddressBook = (
 			}
 		},
 		onSuccess: () => {
-				toast.success('주소록이 성공적으로 업데이트되었습니다.');
+			toast.success('주소록이 성공적으로 업데이트되었습니다.');
 			queryClient.invalidateQueries({ queryKey: ['addressBook'] });
 		},
 		onError: error => {
 			if (error.message === '중복된 그룹명입니다.') {
 				toast.error(error.message);
 			} else {
-			toast.error('주소록 업데이트에 실패했습니다. 다시 시도해주세요.');
+				toast.error('주소록 업데이트에 실패했습니다. 다시 시도해주세요.');
 			}
 		},
 	});
