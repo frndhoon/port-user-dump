@@ -24,12 +24,12 @@ const SideMenu = () => {
 
 				{/* 사이드바 메뉴 */}
 				<div className="flex flex-grow flex-col">
-					<SideMenuItem icon={<ShipMonitoring />} title={'선박 \n 모니터링'} href="/ship-monitoring" disabled />
-					<SideMenuItem icon={<Container />} title={'화물 \n 모니터링'} href="/t-container" disabled />
-					<SideMenuItem icon={<Schedule />} title={'선석 \n 스케줄(G)'} href="/schedule" disabled />
-					<SideMenuItem icon={<Schedule />} title={'선석 \n 스케줄(T)'} href="/table-schedule" disabled />
-					<SideMenuItem icon={<Container />} title={'컨테이너 \n 조회'} href="/container" disabled />
-					<SideMenuItem icon={<Statistics />} title={'통계'} href="/statistics" disabled />
+					<SideMenuItem icon={<ShipMonitoring />} title={'선박 \n 모니터링'} href="#" />
+					<SideMenuItem icon={<Container />} title={'화물 \n 모니터링'} href="#" />
+					<SideMenuItem icon={<Schedule />} title={'선석 \n 스케줄(G)'} href="#" />
+					<SideMenuItem icon={<Schedule />} title={'선석 \n 스케줄(T)'} href="#" />
+					<SideMenuItem icon={<Container />} title={'컨테이너 \n 조회'} href="#" />
+					<SideMenuItem icon={<Statistics />} title={'통계'} href="#" />
 					<SideMenuItem icon={<User />} title={'개인화 \n 설정'} href="/user/address-book" />
 				</div>
 
@@ -61,17 +61,8 @@ interface SideMenuItemProps {
 	disabled?: boolean;
 }
 
-const SideMenuItem = ({ icon, title, href, disabled }: SideMenuItemProps) => {
+const SideMenuItem = ({ icon, title, href }: SideMenuItemProps) => {
 	const pathname = usePathname();
-
-	if (disabled) {
-		return (
-			<div className="flex h-[10rem] w-full cursor-not-allowed flex-col items-center justify-center gap-[1rem]">
-				<div className="flex h-[2.8rem] w-[2.8rem] items-center justify-center">{icon}</div>
-				{title && <p className="text-center text-[1.7rem] leading-[110%] whitespace-pre-line">{title}</p>}
-			</div>
-		);
-	}
 
 	return (
 		<Link
@@ -79,6 +70,7 @@ const SideMenuItem = ({ icon, title, href, disabled }: SideMenuItemProps) => {
 			className={cn(
 				'flex h-[10rem] w-full flex-col items-center justify-center gap-[1rem] hover:bg-[#F5F6F8]',
 				pathname === href && 'text-primary bg-[#F5F6F8] font-bold',
+				href === '#' && 'cursor-not-allowed',
 			)}
 		>
 			<div className="flex h-[2.8rem] w-[2.8rem] items-center justify-center">{icon}</div>
