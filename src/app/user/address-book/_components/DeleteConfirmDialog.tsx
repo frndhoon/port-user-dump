@@ -17,7 +17,7 @@ const DeleteConfirmDialog = ({ id }: { id: number }) => {
 
 	const handleDelete = async () => {
 		try {
-		await deleteAddressBook({});
+			await deleteAddressBook({});
 			// eslint-disable-next-line unused-imports/no-unused-vars
 		} catch (error) {
 			// 훅에서 error toast 처리
