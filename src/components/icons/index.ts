@@ -6,6 +6,8 @@ export { default as ChevronsLeft } from './ChevronsLeft';
 export { default as ChevronsRight } from './ChevronsRight';
 export { default as Close } from './Close';
 export { default as Container } from './Container';
+export { default as Error } from './Error';
+export { default as ReadingGlasses } from './ReadingGlasses';
 export { default as Schedule } from './Schedule';
 export { default as ShipMonitoring } from './ShipMonitoring';
 export { default as Statistics } from './Statistics';
