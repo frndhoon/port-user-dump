@@ -41,8 +41,8 @@ const AddressBookPage = () => {
 					previousPage={addressBook?.perviousPage || 0}
 					nowPage={addressBook?.nowPage || 0}
 					nextPage={addressBook?.nextPage || null}
-					pageSize={addressBook?.pageSize || 10}
-					totalRows={addressBook?.totalRows || 10}
+					pageSize={addressBook?.pageSize || 1}
+					totalRows={addressBook?.totalRows || 1}
 					onPageChange={handlePageChange}
 				/>
 			</div>
