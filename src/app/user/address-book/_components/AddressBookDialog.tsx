@@ -145,7 +145,7 @@ const AddressBookDialog = ({ mode, contactGroup }: AddressBookDialogProps) => {
 						disabled={contacts.length === 0 || name === '' || isCreating || isSearching || isUpdating}
 						onClick={mode === 'add' ? handleCreate : handleUpdate}
 					>
-						저장
+						{isCreating || isUpdating ? '저장 중...' : '저장'}
 					</Button>
 				</div>
 			</DialogContent>
