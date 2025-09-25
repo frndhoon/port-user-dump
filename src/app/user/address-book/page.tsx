@@ -26,17 +26,21 @@ const AddressBookPage = () => {
 
 			{/* 주소록 테이블 */}
 			<div className="flex flex-col gap-[2rem]">
-				<AddressBookTable
-					contactGroups={addressBook?.contactGroups || []}
-					isAddressBookLoading={isAddressBookLoading}
-					isAddressBookError={isAddressBookError}
-				/>
-				<AddressBookTablePagination
-					nowPage={addressBook?.nowPage || 0}
-					pageSize={addressBook?.pageSize || 1}
-					totalRows={addressBook?.totalRows || 1}
-					onPageChange={handlePageChange}
-				/>
+				<div className="h-[100rem]">
+					<AddressBookTable
+						contactGroups={addressBook?.contactGroups || []}
+						isAddressBookLoading={isAddressBookLoading}
+						isAddressBookError={isAddressBookError}
+					/>
+				</div>
+				<div className="h-full">
+					<AddressBookTablePagination
+						nowPage={addressBook?.nowPage || 0}
+						pageSize={addressBook?.pageSize || 1}
+						totalRows={addressBook?.totalRows || 1}
+						onPageChange={handlePageChange}
+					/>
+				</div>
 			</div>
 		</>
 	);

@@ -35,7 +35,7 @@ const AddressBookTable = ({
 				{isAddressBookLoading ? (
 					<TableRow>
 						<TableCell colSpan={3} className="p-0">
-							{Array.from({ length: 10 }).map((_, index) => (
+							{Array.from({ length: 20 }).map((_, index) => (
 								<Skeleton className="border-stroke h-[4.8rem] w-full rounded-none border-b" key={index} />
 							))}
 						</TableCell>
