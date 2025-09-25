@@ -12,7 +12,7 @@ import { Dialog, DialogTitle, DialogContent, DialogHeader, DialogTrigger, Dialog
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { TableCell, TableRow } from '@/components/ui/table';
-import { ContactGroup } from '@/types/address-book-types';
+import * as addressBookTypes from '@/types/address-book-types';
 
 /**
  * @component 주소록 다이얼로그 컴포넌트
@@ -24,7 +24,7 @@ import { ContactGroup } from '@/types/address-book-types';
 
 interface AddressBookDialogProps {
 	mode: 'add' | 'edit';
-	contactGroup?: ContactGroup;
+	contactGroup?: addressBookTypes.ContactGroup;
 }
 
 const AddressBookDialog = ({ mode, contactGroup }: AddressBookDialogProps) => {

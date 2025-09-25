@@ -1,7 +1,7 @@
 import AddressBookDialog from '@/app/user/address-book/_components/AddressBookDialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { ContactGroup } from '@/types/address-book-types';
+import * as addressBookTypes from '@/types/address-book-types';
 
 /**
  * @component 주소록 테이블 컴포넌트
@@ -17,7 +17,7 @@ const AddressBookTable = ({
 	isAddressBookLoading,
 	isAddressBookError,
 }: {
-	contactGroups: ContactGroup[];
+	contactGroups: addressBookTypes.ContactGroup[];
 	isAddressBookLoading: boolean;
 	isAddressBookError: boolean;
 }) => {

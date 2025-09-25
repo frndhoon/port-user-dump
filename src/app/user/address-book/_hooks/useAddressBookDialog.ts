@@ -1,6 +1,6 @@
 import { useCreateAddressBook, useUpdateAddressBook } from '@/api/tanstack-query/useAddressBook';
 import useDialog from '@/components/hooks/useDialog';
-import { Contact, ContactGroup } from '@/types/address-book-types';
+import * as addressBookTypes from '@/types/address-book-types';
 
 /**
  * @component 주소록 다이얼로그 훅
@@ -19,8 +19,8 @@ interface UseAddressBookDialogProps {
 	resetInput: () => void;
 	restoreFromServerData: () => void;
 	name: string;
-	contacts: Contact[];
-	contactGroup?: ContactGroup;
+	contacts: addressBookTypes.Contact[];
+	contactGroup?: addressBookTypes.ContactGroup;
 }
 
 const useAddressBookDialog = ({ mode, resetInput, restoreFromServerData, name, contacts, contactGroup }: UseAddressBookDialogProps) => {
