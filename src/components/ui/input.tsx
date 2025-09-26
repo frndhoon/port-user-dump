@@ -11,11 +11,11 @@ const inputVariants = cva(
 		variants: {
 			variant: {
 				default: 'border-input h-9 bg-transparent px-3 py-1 text-base shadow-xs border md:text-sm',
-				dialog: 'h-[3.2rem] border-none bg-[#F2F2F2] text-[1.4rem] placeholder:text-placeholder px-[1.6rem] rounded-[0.8rem] focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0 font-bold placeholder:font-medium',
+				port_i: 'h-[3.2rem] border-none bg-[#F2F2F2] text-[1.4rem] placeholder:text-placeholder px-[1.6rem] rounded-[0.8rem] focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0 font-bold placeholder:font-medium',
 			},
 		},
 		defaultVariants: {
-			variant: 'default',
+			variant: 'port_i',
 		},
 	},
 );

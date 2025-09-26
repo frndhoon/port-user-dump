@@ -15,7 +15,7 @@ const TopMenu = () => {
 	return (
 		<div className="border-stroke flex h-[6rem] w-full flex-row items-end gap-[3rem] border-b px-[2rem]">
 			<TopMenuItem title="주소록" href="/user/address-book" />
-			<TopMenuItem title="이상탐지 설정" href="#" />
+			<TopMenuItem title="이상탐지 설정" href="/user/operation-incident-setting" />
 			<TopMenuItem title="기타 설정" href="#" />
 			<TopMenuItem title="엑셀 양식 관리" href="#" />
 		</div>

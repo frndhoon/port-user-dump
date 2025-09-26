@@ -80,7 +80,7 @@ const AddressBookDialog = ({ mode, contactGroup }: AddressBookDialogProps) => {
 						<Label className="flex flex-row gap-0 text-[1.4rem] whitespace-nowrap text-[#6D6D6D]">
 							그룹명 <span className="text-[#EA6B78]">*</span>
 						</Label>
-						<Input variant="dialog" placeholder="그룹명을 입력해주세요." value={name} onChange={e => setName(e.target.value)} />
+						<Input placeholder="그룹명을 입력해주세요." value={name} onChange={e => setName(e.target.value)} />
 					</div>
 				</DialogHeader>
 
@@ -93,7 +93,7 @@ const AddressBookDialog = ({ mode, contactGroup }: AddressBookDialogProps) => {
 						<div className="flex min-h-[4.8rem] flex-col justify-center">
 							<div className="flex flex-row items-start justify-center gap-[1rem]">
 								<div className="flex w-full flex-col gap-[0.5rem]">
-									<Input variant="dialog" placeholder="이메일을 입력해주세요." value={email} onChange={e => setEmail(e.target.value)} />
+									<Input placeholder="이메일을 입력해주세요." value={email} onChange={e => setEmail(e.target.value)} />
 									{emailWarningMessage && <p className="text-[1.4rem] text-[#EA6B78]">{emailWarningMessage}</p>}
 								</div>
 								<Button variant="add" size="add" onClick={handleAddContact} disabled={isSearching || isCreating || isUpdating}>
