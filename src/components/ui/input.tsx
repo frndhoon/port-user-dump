@@ -12,6 +12,8 @@ const inputVariants = cva(
 			variant: {
 				default: 'border-input h-9 bg-transparent px-3 py-1 text-base shadow-xs border md:text-sm',
 				port_i: 'h-[3.2rem] border-none bg-[#F2F2F2] text-[1.4rem] placeholder:text-placeholder px-[1.6rem] rounded-[0.8rem] focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0 font-bold placeholder:font-medium',
+				etc_setting:
+					'border-none placeholder:text-[#9F9F9F] text-17 font-bold focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0',
 			},
 		},
 		defaultVariants: {

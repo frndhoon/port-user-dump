@@ -1,0 +1,134 @@
+{
+	"shippingLegends": [
+		{
+			"id": 4498,
+			"color": "#0000FF",
+			"shipping": {
+				"id": 11,
+				"code": "CMA",
+				"name": "CMA"
+			},
+			"sortOrder": 1
+		},
+		{
+			"id": 4499,
+			"color": "#FFFF00",
+			"shipping": {
+				"id": 1,
+				"code": "HMM",
+				"name": "HMM"
+			},
+			"sortOrder": 2
+		},
+		{
+			"id": 4500,
+			"color": "#A7BFE5",
+			"shipping": {
+				"id": 3,
+				"code": "HJS",
+				"name": "HJS"
+			},
+			"sortOrder": 3
+		},
+		{
+			"id": 4501,
+			"color": "#B8DDF7",
+			"shipping": {
+				"id": 7,
+				"code": "ONE",
+				"name": "ONE"
+			},
+			"sortOrder": 4
+		},
+		{
+			"id": 4502,
+			"color": "#A3DE00",
+			"shipping": {
+				"id": 6,
+				"code": "ZIM",
+				"name": "ZIM"
+			},
+			"sortOrder": 5
+		},
+		{
+			"id": 4503,
+			"color": "#8DC83C",
+			"shipping": {
+				"id": 8,
+				"code": "KFC",
+				"name": "KFC"
+			},
+			"sortOrder": 6
+		},
+		{
+			"id": 4504,
+			"color": "#F9D7E8",
+			"shipping": {
+				"id": 9,
+				"code": "APL",
+				"name": "APL"
+			},
+			"sortOrder": 7
+		},
+		{
+			"id": 4505,
+			"color": "#33388A",
+			"shipping": {
+				"id": 22,
+				"code": "MSC",
+				"name": "MSC"
+			},
+			"sortOrder": 8
+		},
+		{
+			"id": 4506,
+			"color": "#7C6D6A",
+			"shipping": {
+				"id": 21,
+				"code": "MOL",
+				"name": "MOL"
+			},
+			"sortOrder": 9
+		},
+		{
+			"id": 4507,
+			"color": "#DD156B",
+			"shipping": {
+				"id": 23,
+				"code": "EMC",
+				"name": "EMC"
+			},
+			"sortOrder": 10
+		},
+		{
+			"id": 4508,
+			"color": "#9F7DBC",
+			"shipping": {
+				"id": 25,
+				"code": "KMD",
+				"name": "KMD"
+			},
+			"sortOrder": 11
+		},
+		{
+			"id": 4509,
+			"color": "#FF8000",
+			"shipping": {
+				"id": 14,
+				"code": "SKR",
+				"name": "SKR"
+			},
+			"sortOrder": 12
+		},
+		{
+			"id": 4510,
+			"color": "#C1616A",
+			"shipping": {
+				"id": 41,
+				"code": "NSL",
+				"name": "NSL"
+			},
+			"sortOrder": 13
+		}
+	]
+}
