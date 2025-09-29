@@ -23,6 +23,7 @@ const buttonVariants = cva(
 				add: 'border border-primary bg-[#EEF0FC] text-primary rounded-[0.7rem] text-[1.3rem] gap-[0.3rem] leading-none',
 				cancel: 'border-stroke border bg-white text-[1.7rem] rounded-[0.7rem] leading-none',
 				save: 'bg-primary border-none text-[1.7rem] text-white disabled:bg-disabled leading-none',
+				defaultOutline: 'bg-sub border border-primary text-primary',
 			},
 			size: {
 				default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -33,6 +34,7 @@ const buttonVariants = cva(
 				delete: 'h-[3.2rem] p-[1rem]',
 				add: 'h-[3.2rem] p-[1rem]',
 				dialog: 'w-[9rem] h-[4.1rem] px-[3rem] rounded-[1rem]',
+				colorAdd: 'h-[4.1rem] w-[4.1rem] rounded-[1rem] px-[1.6rem]',
 			},
 		},
 		defaultVariants: {
@@ -47,10 +49,12 @@ const Button = ({
 	variant,
 	size,
 	asChild = false,
+	ref,
 	...props
 }: React.ComponentProps<'button'> &
 	VariantProps<typeof buttonVariants> & {
 		asChild?: boolean;
+		ref?: React.RefObject<HTMLButtonElement>;
 	}) => {
 	const Comp = asChild ? Slot : 'button';
 
