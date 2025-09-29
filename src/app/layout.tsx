@@ -4,7 +4,7 @@ import localFont from 'next/font/local';
 import { Close, ToastError, ToastSuccess } from '@/components/icons';
 import SideMenu from '@/components/SideMenu';
 import { Toaster } from '@/components/ui/sonner';
-import TanstackQueryProvider from '@/provider/TanstackQueryProvider';
+import Provider from '@/provider/Provider';
 import '../styles/globals.css';
 
 const pretendard = localFont({
@@ -27,7 +27,7 @@ const RootLayout = ({
 	return (
 		<html lang="en">
 			<body className={`${pretendard.variable} antialiased`}>
-				<TanstackQueryProvider>
+				<Provider>
 					<SideMenu />
 					{children}
 					<Toaster
@@ -57,7 +57,7 @@ const RootLayout = ({
 							closeButton: true,
 						}}
 					/>
-				</TanstackQueryProvider>
+				</Provider>
 			</body>
 		</html>
 	);

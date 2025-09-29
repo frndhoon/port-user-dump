@@ -1,11 +1,16 @@
 export { default as ArrowDown } from './ArrowDown';
+export { default as Add } from './Add';
 export { default as BpaLogo } from './BpaLogo';
+export { default as Caret } from './Caret';
 export { default as ChevronLeft } from './ChevronLeft';
 export { default as ChevronRight } from './ChevronRight';
 export { default as ChevronsLeft } from './ChevronsLeft';
 export { default as ChevronsRight } from './ChevronsRight';
 export { default as Close } from './Close';
+export { default as Check } from './Check';
 export { default as Container } from './Container';
+export { default as DragAndDropPoint } from './DragAndDropPoint';
+export { default as DragAndDropLine } from './DragAndDropLine';
 export { default as Error } from './Error';
 export { default as ReadingGlasses } from './ReadingGlasses';
 export { default as ToastError } from './ToastError';
