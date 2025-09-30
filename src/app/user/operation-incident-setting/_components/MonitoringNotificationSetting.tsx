@@ -28,6 +28,22 @@ interface MonitoringNotificationSettingProps {
 	isUpdatePending: boolean;
 }
 
+const checkInputValue = (value: string) => {
+	if (isNaN(Number(value))) {
+		return 0;
+	}
+
+	if (Number(value) < 0) {
+		return 0;
+	}
+
+	if (Number(value) > 999) {
+		return 999;
+	}
+
+	return Number(value);
+};
+
 const MonitoringNotificationSetting = ({
 	displayName,
 	codeValue,
@@ -56,9 +72,10 @@ const MonitoringNotificationSetting = ({
 								<Input
 									className="text-17 h-[4rem] w-[7rem] text-center font-medium"
 									value={setting?.settingOffset ?? 0}
-									onChange={e => onUpdate(codeValue, { settingOffset: Number(e.target.value) })}
+									onChange={e => onUpdate(codeValue, { settingOffset: checkInputValue(e.target.value) })}
 									disabled={!entireActiveYn || !setting?.activeYn || isGetLoading || isUpdatePending}
 									maxLength={3}
+									type="text"
 								/>
 								<p className="text-17">분 경과</p>
 							</>
