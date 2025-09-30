@@ -1,5 +1,7 @@
 'use client';
 
+import { toast } from 'sonner';
+
 import Breadcrumb from '@/app/user/_components/Breadcrumb';
 import MonitoringNotificationSetting from '@/app/user/operation-incident-setting/_components/MonitoringNotificationSetting';
 import { monitoringNotificationList } from '@/app/user/operation-incident-setting/_constants/monitoring-notification-constants';
@@ -9,8 +11,20 @@ import { Switch } from '@/components/ui/switch';
 import { VesselLoader } from '@/components/VesselLoader';
 
 const OperationIncidentSettingPage = () => {
-	const { localEntireActiveYn, setLocalEntireActiveYn, localSettings, updateLocalSetting, updateOperationIncidentSetting, isGetLoading, isUpdatePending } =
-		useOperationIncidentSetting();
+	const {
+		localEntireActiveYn,
+		setLocalEntireActiveYn,
+		localSettings,
+		updateLocalSetting,
+		updateOperationIncidentSetting,
+		isGetLoading,
+		isUpdatePending,
+		isGetError,
+	} = useOperationIncidentSetting();
+
+	if (isGetError) {
+		toast.error('이상탐지 설정 조회에 실패했습니다.');
+	}
 
 	return (
 		<div id="operation-incident-setting" className="flex flex-col gap-[2rem]">
@@ -22,7 +36,7 @@ const OperationIncidentSettingPage = () => {
 				<Button
 					variant="secondary"
 					className="h-[4rem] w-[9rem] rounded-[1rem] px-[3rem] py-0 text-white"
-					disabled={isUpdatePending || isGetLoading}
+					disabled={isUpdatePending || isGetLoading || isGetError}
 					onClick={() => updateOperationIncidentSetting()}
 				>
 					<p className="text-17 font-bold">{isUpdatePending ? '저장중...' : '저장'}</p>
@@ -36,7 +50,7 @@ const OperationIncidentSettingPage = () => {
 					className="h-[2.6rem] w-[5rem]"
 					checked={localEntireActiveYn}
 					onCheckedChange={setLocalEntireActiveYn}
-					disabled={isGetLoading || isUpdatePending}
+					disabled={isGetLoading || isUpdatePending || isGetError}
 				/>
 			</div>
 
@@ -58,6 +72,7 @@ const OperationIncidentSettingPage = () => {
 								entireActiveYn={localEntireActiveYn}
 								isGetLoading={isGetLoading}
 								isUpdatePending={isUpdatePending}
+								isGetError={isGetError}
 							/>
 						);
 					})}
