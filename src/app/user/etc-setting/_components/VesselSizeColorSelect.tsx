@@ -38,7 +38,7 @@ const VesselSizeColorSelect = ({
 	rangeError,
 	unit,
 }: VesselSizeColorSelectProps) => {
-	const { selectedColorState, handleColorChange } = useVesselSizeColor({
+	const { selectedColorState, handleColorChange, open, setOpen } = useVesselSizeColor({
 		legend,
 		currentLegends,
 		setCurrentLegends,
@@ -78,7 +78,7 @@ const VesselSizeColorSelect = ({
 			>
 				<div className="flex items-center gap-[1rem]">
 					{/* 색상 선택 버튼 */}
-					<Popover>
+					<Popover open={open} onOpenChange={setOpen}>
 						<PopoverTrigger
 							className="h-[1.8rem] w-[1.8rem] rounded-full border border-[#000000]/10 p-0"
 							style={{ backgroundColor: selectedColorState }}
