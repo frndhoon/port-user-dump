@@ -104,7 +104,7 @@ const EtcSettingPage = () => {
 
 					<div className="flex flex-col gap-[5rem]">
 						{/* 선사 색상 설정 */}
-						<div className="flex flex-row gap-[3rem] pr-[70rem]">
+						<div className="flex flex-row gap-[3rem] pr-[40rem]">
 							<div className="flex flex-col gap-[1rem]">
 								<p className="text-17 font-bold">선사</p>
 								<div className="flex flex-col gap-[0.5rem]">
@@ -138,7 +138,7 @@ const EtcSettingPage = () => {
 						</div>
 
 						{/* 항로 색상 설정 */}
-						<div className="flex flex-row gap-[3rem] pr-[70rem]">
+						<div className="flex flex-row gap-[3rem] pr-[40rem]">
 							<div className="flex flex-col gap-[1rem]">
 								<p className="text-17 font-bold">항로</p>
 								<div className="flex flex-col gap-[0.5rem]">
@@ -168,7 +168,7 @@ const EtcSettingPage = () => {
 						</div>
 
 						{/* 선박 사이즈(TEU) 색상 설정 */}
-						<div className="flex flex-row gap-[3rem] pr-[70rem]">
+						<div className="flex flex-row gap-[3rem] pr-[40rem]">
 							<div className="flex flex-col gap-[1rem]">
 								<p className="text-17 font-bold">선박 사이즈(TEU)</p>
 								<div className="flex flex-col gap-[0.5rem]">
@@ -193,7 +193,7 @@ const EtcSettingPage = () => {
 				</div>
 
 				{/* 터미널 설정 */}
-				<div className="flex flex-row rounded-[1.5rem] bg-white p-[4rem]">
+				<div className="mb-[4rem] flex flex-row rounded-[1.5rem] bg-white p-[4rem]">
 					{/* 부제 */}
 					<div className="flex h-[4.1rem] w-[25rem] flex-shrink-0 flex-row items-center gap-[1rem]">
 						<p className="text-25 font-bold">터미널 설정</p>

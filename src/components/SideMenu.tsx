@@ -15,8 +15,8 @@ import { cn } from '@/lib/utils';
  */
 const SideMenu = () => {
 	return (
-		<div className="border-stroke fixed box-content w-[10rem] border-r">
-			<nav className="flex h-screen w-full flex-col">
+		<div className="border-stroke fixed z-10 box-content w-[10rem] border-r bg-white">
+			<nav className="flex h-screen w-full flex-col overflow-y-auto">
 				{/* BPA 로고 */}
 				<div className="flex min-h-[10rem] w-full cursor-not-allowed items-center justify-center">
 					<BpaLogo />
@@ -34,7 +34,7 @@ const SideMenu = () => {
 				</div>
 
 				{/* 사용자 정보 */}
-				<div className="border-stroke flex h-[10rem] w-full cursor-not-allowed flex-col items-center justify-center gap-[1rem] border-t">
+				<div className="border-stroke flex h-[10rem] w-full flex-shrink-0 cursor-not-allowed flex-col items-center justify-center gap-[1rem] border-t">
 					<Image src="/images/default_user.png" alt="default_user" width={35.26} height={35.26} />
 					<p className="text-center text-[1.6rem]">홍길동</p>
 				</div>
@@ -68,7 +68,7 @@ const SideMenuItem = ({ icon, title, href }: SideMenuItemProps) => {
 		<Link
 			href={href}
 			className={cn(
-				'flex h-[10rem] w-full flex-col items-center justify-center gap-[1rem] hover:bg-[#F5F6F8]',
+				'flex h-[10rem] w-full flex-shrink-0 flex-col items-center justify-center gap-[1rem] hover:bg-[#F5F6F8]',
 				pathname === href && 'text-primary bg-[#F5F6F8] font-bold',
 				href === '#' && 'cursor-not-allowed',
 			)}
