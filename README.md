@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## port-user-dump
 
-## Getting Started
+> 덤프 이상탐지 및 기타 페이지 작업
 
-First, run the development server:
+### 개발 서버 실행 방법
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
+> 패키지 매니저 : `pnpm`
+
+```
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `.env`는 노션 페이지에 별도 관리 (문의)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### naming convention
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 컴포넌트/페이지 변수명 : PascalCase (TContainerPage)
+- 변수/함수: camelCase (getUserData)
+- 상수: UPPER_SNAKE_CASE (API_URL)
+- 타입/인터페이스: PascalCase (UserData, ApiResponse)
 
-## Learn More
+### commit convention
 
-To learn more about Next.js, take a look at the following resources:
+```
+{커밋 타입}: {커밋 제목}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- {설명}
+- ...
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+Ref: {참고 링크}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 커밋 타입
+  - `feat`: 새로운 기능 추가
+  - `fix`: 버그 수정
+  - `docs`: 문서 수정
+  - `style`: 코드 포맷팅
+  - `refactor`: 코드 리팩토링
+  - `design`: UI 디자인 및 레이아웃 수정
+  - `chore`: 작업 환경 세팅, 패키지 매니저 수정
