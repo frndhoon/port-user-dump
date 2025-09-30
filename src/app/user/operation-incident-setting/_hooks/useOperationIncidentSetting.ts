@@ -11,7 +11,11 @@ import * as operationIncidentSettingTypes from '@/types/operation-incident-setti
  */
 
 const useOperationIncidentSetting = () => {
-	const { data: serverData, isLoading: isGetLoading } = useGetOperationIncidentSetting({
+	const {
+		data: serverData,
+		isLoading: isGetLoading,
+		isError: isGetError,
+	} = useGetOperationIncidentSetting({
 		nc: 'MONITORING_ALERT',
 	});
 
@@ -43,6 +47,7 @@ const useOperationIncidentSetting = () => {
 		updateOperationIncidentSetting,
 		isGetLoading,
 		isUpdatePending,
+		isGetError,
 	};
 };
 

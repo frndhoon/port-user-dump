@@ -15,6 +15,7 @@ import * as operationIncidentSettingTypes from '@/types/operation-incident-setti
  * @param entireActiveYn 전체 이상탐지 수신 여부
  * @param isGetLoading 서버 데이터 로딩 여부
  * @param isUpdatePending 서버 데이터 업데이트 여부
+ * @param isGetError 서버 데이터 조회 에러 여부
  */
 
 interface MonitoringNotificationSettingProps {
@@ -26,6 +27,7 @@ interface MonitoringNotificationSettingProps {
 	entireActiveYn: boolean;
 	isGetLoading: boolean;
 	isUpdatePending: boolean;
+	isGetError: boolean;
 }
 
 const checkInputValue = (value: string) => {
@@ -53,6 +55,7 @@ const MonitoringNotificationSetting = ({
 	entireActiveYn,
 	isGetLoading,
 	isUpdatePending,
+	isGetError,
 }: MonitoringNotificationSettingProps) => {
 	return (
 		<div className="flex flex-row gap-[2rem]">
@@ -64,7 +67,7 @@ const MonitoringNotificationSetting = ({
 							className="h-[2.6rem] w-[5rem]"
 							checked={setting?.activeYn ?? true}
 							onCheckedChange={event => onUpdate(codeValue, { activeYn: event })}
-							disabled={!entireActiveYn || isGetLoading || isUpdatePending}
+							disabled={!entireActiveYn || isGetLoading || isUpdatePending || isGetError}
 						/>
 						{/* 접안 지연 또는 출항 지연 알림 설정 시 분 경과 입력 필드 추가 */}
 						{(codeValue === 'BERTHING_DELAY_NOTIFICATION' || codeValue === 'DEPARTURE_DELAY_NOTIFICATION') && (
@@ -73,7 +76,7 @@ const MonitoringNotificationSetting = ({
 									className="text-17 h-[4rem] w-[7rem] text-center font-medium"
 									value={setting?.settingOffset ?? 0}
 									onChange={e => onUpdate(codeValue, { settingOffset: checkInputValue(e.target.value) })}
-									disabled={!entireActiveYn || !setting?.activeYn || isGetLoading || isUpdatePending}
+									disabled={!entireActiveYn || !setting?.activeYn || isGetLoading || isUpdatePending || isGetError}
 									maxLength={3}
 									type="text"
 								/>

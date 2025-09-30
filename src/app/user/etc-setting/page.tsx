@@ -1,5 +1,7 @@
 'use client';
 
+import { toast } from 'sonner';
+
 import { useGetEtcSetting, useGetShippingCompanies, useGetRoutes, useGetTerminalFilterSettings, useSaveEtcSetting } from '@/api/tanstack-query/useEtcSetting';
 import Breadcrumb from '@/app/user/_components/Breadcrumb';
 import LegendColorSetting from '@/app/user/etc-setting/_components/LegendColorSetting';
@@ -16,15 +18,20 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { VesselLoader } from '@/components/VesselLoader';
 
 const EtcSettingPage = () => {
-	const { data: etcSetting, isLoading: isEtcSettingLoading } = useGetEtcSetting();
-	const { data: shippingCompanies } = useGetShippingCompanies();
-	const { data: routes } = useGetRoutes();
-	const { data: terminalFilterSettings, isLoading: isTerminalFilterSettingsLoading } = useGetTerminalFilterSettings();
+	const { data: etcSetting, isLoading: isEtcSettingLoading, isError: isEtcSettingError } = useGetEtcSetting();
+	const { data: shippingCompanies, isError: isShippingCompaniesError } = useGetShippingCompanies();
+	const { data: routes, isError: isRoutesError } = useGetRoutes();
+	const { data: terminalFilterSettings, isLoading: isTerminalFilterSettingsLoading, isError: isTerminalFilterSettingsError } = useGetTerminalFilterSettings();
 
-	// 중복 제거된 데이터
-	const { uniqueShippingCompanies, uniqueRoutes } = useUniqueData({ shippingCompanies, routes });
+	const isLoading = isEtcSettingLoading || isTerminalFilterSettingsLoading;
+	const hasError = isEtcSettingError || isShippingCompaniesError || isRoutesError || isTerminalFilterSettingsError;
 
-	// 범례 관리
+	const { uniqueShippingCompanies, uniqueRoutes } = useUniqueData({
+		shippingCompanies: hasError ? { shippingCompanies: [] } : shippingCompanies,
+		routes: hasError ? { routes: [] } : routes,
+	});
+
+	// 범례 관리 - 에러가 있으면 빈 데이터로 초기화
 	const {
 		clientShippingLegends,
 		clientRouteLegends,
@@ -36,9 +43,8 @@ const EtcSettingPage = () => {
 		handleAddShippingLegend,
 		handleAddRouteLegend,
 		handleAddVesselSizeLegendTEU,
-	} = useLegendManagement({ etcSetting });
+	} = useLegendManagement({ etcSetting: hasError ? null : etcSetting });
 
-	// 터미널 관리
 	const {
 		terminalFilterSettings: clientTerminalFilterSettings,
 		portSections,
@@ -47,7 +53,7 @@ const EtcSettingPage = () => {
 		moveTerminalFilter,
 		movePortSection,
 		handleToggleTerminalFilter,
-	} = useTerminalManagement({ terminalFilterSettings });
+	} = useTerminalManagement({ terminalFilterSettings: hasError ? null : terminalFilterSettings });
 
 	// 유효성 검증
 	const validation = useEtcSettingValidation({
@@ -63,9 +69,13 @@ const EtcSettingPage = () => {
 		vesselSizeLegends: clientVesselSizeLegends,
 	});
 
+	if (hasError) {
+		toast.error('기타 설정 조회에 실패했습니다.');
+	}
+
 	return (
 		<div id="etc-setting">
-			{(isEtcSettingLoading || isTerminalFilterSettingsLoading || isSavePending) && <VesselLoader />}
+			{(isLoading || isSavePending) && <VesselLoader />}
 
 			{/* 상단 메뉴 */}
 			<div className="flex flex-row items-center justify-between">
@@ -73,7 +83,7 @@ const EtcSettingPage = () => {
 				<Button
 					variant="secondary"
 					className="h-[4rem] w-[9rem] rounded-[1rem] px-[3rem] py-0 text-white"
-					disabled={!validation.isValid}
+					disabled={!validation.isValid || hasError}
 					onClick={() => {
 						saveEtcSetting();
 					}}
@@ -192,7 +202,6 @@ const EtcSettingPage = () => {
 					</div>
 				</div>
 
-				{/* 터미널 설정 */}
 				<div className="mb-[4rem] flex flex-row rounded-[1.5rem] bg-white p-[4rem]">
 					{/* 부제 */}
 					<div className="flex h-[4.1rem] w-[25rem] flex-shrink-0 flex-row items-center gap-[1rem]">
@@ -210,20 +219,23 @@ const EtcSettingPage = () => {
 							</TooltipContent>
 						</Tooltip>
 					</div>
-
-					<div className="flex flex-row gap-[3.1rem]">
-						{portSections.map((portSection, sectionIndex) => (
-							<PortSection
-								key={portSection.portCode}
-								portSection={portSection}
-								sectionIndex={sectionIndex}
-								movePortSection={movePortSection}
-								terminalFilterSettings={portSection.portCode === 'BNP' ? bnpTerminalFilterSettings : pusTerminalFilterSettings}
-								onToggleTerminalFilter={handleToggleTerminalFilter}
-								moveTerminalFilter={moveTerminalFilter}
-							/>
-						))}
-					</div>
+					{!hasError && !isLoading ? (
+						<div className="flex flex-row gap-[3.1rem]">
+							{portSections.map((portSection, sectionIndex) => (
+								<PortSection
+									key={portSection.portCode}
+									portSection={portSection}
+									sectionIndex={sectionIndex}
+									movePortSection={movePortSection}
+									terminalFilterSettings={portSection.portCode === 'BNP' ? bnpTerminalFilterSettings : pusTerminalFilterSettings}
+									onToggleTerminalFilter={handleToggleTerminalFilter}
+									moveTerminalFilter={moveTerminalFilter}
+								/>
+							))}
+						</div>
+					) : (
+						<></>
+					)}
 				</div>
 			</div>
 		</div>
